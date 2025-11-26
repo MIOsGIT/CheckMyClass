@@ -1,0 +1,293 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 402px;
+  height: 874px;
+  align-items: center;
+  gap: 16px;
+  padding: 66px 0px 0px;
+  position: relative;
+  background-color: var(--background);
+}
+
+.main .header {
+  display: flex;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 0px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  background-color: var(--background);
+  box-shadow: 0px 4px 4px #00000040;
+}
+
+.main .frame {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: -7.00px;
+  margin-bottom: -7.00px;
+}
+
+.main .checkmyclass-x {
+  position: relative;
+  width: 40px;
+  height: 30px;
+  aspect-ratio: 1.33;
+}
+
+.main .check-my-class {
+  position: relative;
+  width: 128px;
+  height: 26px;
+  margin-top: -5.00px;
+  margin-bottom: -5.00px;
+}
+
+.main .profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.main .div {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.main .view {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  aspect-ratio: 1;
+  background-image: url(./img/1.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.main .text-wrapper {
+  position: relative;
+  width: 173px;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--main);
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  font-style: var(--main-font-font-style);
+}
+
+.main .div-wrapper {
+  display: inline-flex;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--main);
+  border-radius: 20px;
+}
+
+.main .text-wrapper-2 {
+  margin-top: -8.00px;
+  margin-bottom: -6.00px;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--white);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.main .view-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.main .frame-2 {
+  display: inline-flex;
+  max-height: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--background);
+  border-radius: 20px;
+  border: 1px solid;
+  border-color: var(--main);
+}
+
+.main .text-wrapper-3 {
+  margin-top: -8.00px;
+  margin-bottom: -6.00px;
+  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-weight: 500;
+  color: var(--black);
+  position: relative;
+  width: fit-content;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.main .view-3 {
+  display: flex;
+  width: 354px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  background-color: var(--main);
+  border-radius: 12px;
+}
+
+.main .text-wrapper-4 {
+  margin-top: -1.00px;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--white);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.main .frame-3 {
+  display: flex;
+  flex-direction: column;
+  width: 354px;
+  height: 416px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  background-color: var(--gray);
+}
+
+.main .text-wrapper-5 {
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--black);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.main .view-4 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 20px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--main);
+  border-radius: 20px;
+}
+/* Inject original CSS code here */
+
+.main .frame-2 {
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.main .frame-2:hover {
+  background-color: var(--main);
+  border-color: var(--main);
+}
+
+.main .frame-2:hover .text-wrapper-3 {
+  color: var(--white);
+}
+
+.main .frame-2:focus {
+  outline: 2px solid var(--main);
+  outline-offset: 2px;
+}
+
+.main .frame-2:active {
+  transform: scale(0.98);
+}
+
+.main .view-3 {
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  border: none;
+}
+
+.main .view-3:hover {
+  background-color: rgba(32, 59, 85, 0.9);
+}
+
+.main .view-3:focus {
+  outline: 2px solid var(--main);
+  outline-offset: 2px;
+}
+
+.main .view-3:active {
+  transform: scale(0.98);
+}
+
+.main .view-4 {
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  border: none;
+}
+
+.main .view-4:hover {
+  background-color: rgba(32, 59, 85, 0.9);
+}
+
+.main .view-4:focus {
+  outline: 2px solid var(--main);
+  outline-offset: 2px;
+}
+
+.main .view-4:active {
+  transform: scale(0.98);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
