@@ -31,8 +31,8 @@
   gap: 10px;
   position: relative;
   flex: 0 0 auto;
-  margin-top: -7.00px;
-  margin-bottom: -7.00px;
+  margin-top: -7px;
+  margin-bottom: -7px;
 }
 
 .main .checkmyclass-x {
@@ -46,8 +46,8 @@
   position: relative;
   width: 128px;
   height: 26px;
-  margin-top: -5.00px;
-  margin-bottom: -5.00px;
+  margin-top: -5px;
+  margin-bottom: -5px;
 }
 
 .main .deu {
@@ -152,7 +152,7 @@
 .main .frame-2 {
   display: inline-flex;
   max-height: 24px;
-  height: 24px; 
+  height: 24px;
   align-items: center;
   justify-content: center;
   gap: 10px;
@@ -191,7 +191,7 @@
 }
 
 .main .text-wrapper-4 {
-  margin-top: -1.00px;
+  margin-top: -1px;
   font-family: var(--main-font-font-family);
   font-weight: var(--main-font-font-weight);
   color: var(--white);
@@ -305,8 +305,8 @@
 }
 
 body {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .log-in {
@@ -354,7 +354,6 @@ body {
 
 .log-in .info {
   display: flex;
-  width: 313px;
   height: 147px;
   align-items: flex-start;
   gap: 5px;
@@ -364,7 +363,7 @@ body {
 }
 
 .log-in .text-wrapper {
-  margin-top: -1.00px;
+  margin-top: -1px;
   position: relative;
   width: fit-content;
   font-family: "Pretendard Variable-Medium";
@@ -439,7 +438,7 @@ body {
 .log-in .button-2 {
   position: relative;
   width: fit-content;
-  margin-top: -1.00px;
+  margin-top: -1px;
   font-family: "Pretendard Variable-Medium";
   font-weight: 700;
   color: var(--white);
