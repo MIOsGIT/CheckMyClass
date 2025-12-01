@@ -65,6 +65,7 @@
   align-self: stretch;
   width: 100%;
   flex: 0 0 auto;
+  margin: 8px 0 0 0;
 }
 
 .main .div {
@@ -87,6 +88,7 @@
 
 .main .text-wrapper {
   position: relative;
+  margin: 0 10px;
   width: 173px;
   font-family: var(--main-font-font-family);
   font-weight: var(--main-font-font-weight);
@@ -150,7 +152,7 @@
 .main .frame-2 {
   display: inline-flex;
   max-height: 24px;
-  height: 24px;
+  height: 24px; 
   align-items: center;
   justify-content: center;
   gap: 10px;
