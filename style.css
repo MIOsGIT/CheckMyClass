@@ -448,6 +448,14 @@ body {
   line-height: normal;
 }
 
+.log-in .actions {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
 .text-link {
   display: flex;
   height: 24px;
