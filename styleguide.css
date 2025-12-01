@@ -15,7 +15,6 @@
 }
 
 /*
-
 To enable a theme in your HTML, simply add one of the following data attributes to an HTML element, like so:
 
 <body data-system-colors-mode="light">
@@ -23,7 +22,6 @@ To enable a theme in your HTML, simply add one of the following data attributes 
 </body>
 
 You can apply the theme on any DOM node, not just the `body`
-
 */
 
 [data-system-colors-mode="light"] {
