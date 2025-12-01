@@ -447,6 +447,45 @@ body {
   line-height: normal;
 }
 
+.text-link {
+  display: flex;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  position: relative;
+}
+
+.text-link .text-wrapper {
+  position: relative;
+  width: fit-content;
+  font-family: "Pretendard Variable-Regular", Helvetica;
+  font-weight: 400;
+  color: var(--main);
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 16.8px;
+  text-decoration: underline;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.text-link .text-wrapper:hover {
+  opacity: 0.8;
+}
+
+.text-link .text-wrapper:focus {
+  outline: 2px solid var(--main);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.text-link .text-wrapper:active {
+  opacity: 0.6;
+}
+
+
 .register {
   display: flex;
   width: 402px;
