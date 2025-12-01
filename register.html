@@ -1,93 +1,105 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charset="utf-8" />
-        <title>CheckMyClass - 회원가입</title>
-        <link rel="stylesheet" href="globals.css" />
-        <link rel="stylesheet" href="styleguide.css" />
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-        <div class="register">
-        <header class="header">
-            <div class="frame">
-            <img class="checkmyclass-x" src="Logo_img.png" alt="CheckMyClass 로고" />
-            </div>
-            <img class="check-my-class" src="Logo_eng.png" alt="Check My Class" />
-        </header>
-        <main class="view">
-            <section class="login">
-            <p class="text-wrapper">회원가입을 위한 정보를 입력해주세요<br />비밀번호는 암호화되어 보관됩니다</p>
-            <form class="info" method="post" action="register_process.php">
-                <label class="div" for="name">이름</label>
-                <div class="input">
-                <input
-                    class="frame-2"
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    aria-required="true"
-                    autocomplete="name"
-                />
-                </div>
-                <label class="text-wrapper-2" for="student-id">학번/교번</label>
-                <div class="input">
-                <input
-                    class="frame-2"
-                    type="text"
-                    id="student-id"
-                    name="student-id"
-                    required
-                    aria-required="true"
-                    autocomplete="off"
-                />
-                </div>
-                <label class="text-wrapper-2" for="password">비밀번호</label>
-                <div class="input">
-                <input
-                    class="frame-2"
-                    type="password"
-                    id="password"
-                    name="password"
-                    required
-                    aria-required="true"
-                    autocomplete="new-password"
-                />
-                </div>
-                <label class="text-wrapper-2" for="phone">전화번호</label>
-                <div class="input">
-                <input
-                    class="frame-2"
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    required
-                    aria-required="true"
-                    autocomplete="tel"
-                />
-                </div>
-                <label class="text-wrapper-2" for="department">학과</label>
-                <div class="input">
-                <input
-                    class="frame-2"
-                    type="text"
-                    id="department"
-                    name="department"
-                    required
-                    aria-required="true"
-                    autocomplete="off"
-                />
-                </div>
-                <div class="button">
-                  <button class="button-wrapper" type="submit">
-                      <span class="button-2">회원가입</span>
-                  </button>
-                </div>
-            </form>
-            </section>
-        </main>
-        </div>
-    </body>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <title>CheckMyClass - 회원가입</title>
+  <link rel="stylesheet" href="/asset/css/global.css" />
+  <link rel="stylesheet" href="/asset/css/styleguide.css" />
+  <link rel="stylesheet" href="/asset/css/style.css" />
+</head>
+
+<body>
+  <div class="register">
+    <header class="header">
+      <div class="frame">
+        <img class="checkmyclass-x" src="/asset/Logo/Logo_img.png" alt="CheckMyClass 로고" />
+      </div>
+      <img class="check-my-class" src="/asset/Logo/Logo_eng.png" alt="Check My Class" />
+    </header>
+    <main class="view">
+      <section class="login">
+        <p class="text-wrapper">회원가입을 위한 정보를 입력해주세요<br />비밀번호는 암호화되어 보관됩니다</p>
+
+        <form class="info" id="registerForm">
+          <label class="div" for="name">이름</label>
+          <div class="input">
+            <input class="frame-2" type="text" id="name" name="user_name" required autocomplete="name" />
+          </div>
+
+          <label class="text-wrapper-2" for="user-id">아이디</label>
+          <div class="input">
+            <input class="frame-2" type="text" id="user-id" name="user_id" required autocomplete="off" />
+          </div>
+
+          <label class="text-wrapper-2" for="student-id">학번/교번</label>
+          <div class="input">
+            <input class="frame-2" type="text" id="student-id" name="student_number" required autocomplete="off" />
+          </div>
+
+          <label class="text-wrapper-2" for="password">비밀번호</label>
+          <div class="input">
+            <input class="frame-2" type="password" id="password" name="user_password" required
+              autocomplete="new-password" />
+          </div>
+
+          <label class="text-wrapper-2" for="phone">전화번호</label>
+          <div class="input">
+            <input class="frame-2" type="tel" id="phone" name="phone_number" placeholder="010-0000-0000" />
+          </div>
+
+          <label class="text-wrapper-2" for="department">학과 이름</label>
+          <div class="input">
+            <input class="frame-2" type="text" id="department" name="major_name" required placeholder="예: 응용소프트웨어공학과" />
+          </div>
+
+          <div class="button">
+            <button class="button-wrapper" type="submit">
+              <span class="button-2">회원가입</span>
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', async function (e) {
+      e.preventDefault(); // 기본 제출 방지
+
+      // 1. 폼 데이터 수집
+      const formData = new FormData(this);
+      const jsonData = {};
+      formData.forEach((value, key) => {
+     
+      });
+
+      try {
+        // 2. API 요청 전송
+        const response = await fetch('/api/register.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(jsonData)
+        });
+
+        const result = await response.json();
+
+        // 3. 응답 처리
+        if (response.ok && result.success) {
+          alert('회원가입이 완료되었습니다!');
+          window.location.href = 'login.html'; // 로그인 페이지로 이동
+        } else {
+          alert('회원가입 실패: ' + (result.message || '알 수 없는 오류'));
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('서버 통신 중 오류가 발생했습니다.');
+      }
+    });
+  </script>
+</body>
+
 </html>

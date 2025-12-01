@@ -1,50 +1,83 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <title>CheckMyClass - 강의실 예약 시스템</title>
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="styleguide.css" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <main class="main">
-      <header class="header">
-        <div class="frame">
-          <img class="checkmyclass-x" src="Logo_img.png" alt="CheckMyClass 로고" />
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <title>CheckMyClass - 강의실 예약 시스템</title>
+  <link rel="stylesheet" href="/asset/css/global.css" />
+  <link rel="stylesheet" href="/asset/css/styleguide.css" />
+  <link rel="stylesheet" href="/asset/css/style.css" />
+</head>
+
+<body>
+  <main class="main">
+    <header class="header">
+      <div class="frame">
+        <img class="checkmyclass-x" src="/asset/Logo/Logo_izmg.png" alt="CheckMyClass 로고" />
+      </div>
+      <img class="check-my-class" src="/asset/Logo/Logo_eng.png" alt="Check My Class" />
+
+      <button onclick="logout()" style="margin-left:auto; background:none; border:none; cursor:pointer;">로그아웃</button>
+    </header>
+
+    <section class="profile" aria-label="사용자 프로필">
+      <div class="div">
+        <div class="view" role="img" aria-label="프로필 이미지">
+          <img class="deu" src="/asset/Logo/Logo_dongeui.png" alt="Logo_dongeui" />
         </div>
-        <img class="check-my-class" src="Logo_eng.png" alt="Check My Class" />
-      </header>
-      <section class="profile" aria-label="사용자 프로필">
-        <div class="div">
-          <div class="view" role="img" aria-label="프로필 이미지">
-        <img class="deu" src="Logo_dongeui.png" alt="Logo_dongeui" /></div>
-          <p class="text-wrapper">동의대학교<br />응용소프트웨어공학과 김미주</p>
-        </div>
-        <div class="div-wrapper">
-          <span class="text-wrapper-2">학생회원</span>
-        </div>
-      </section>
-      <nav class="view-2" aria-label="위치 선택">
-        <button class="frame-2" type="button" aria-label="산학협력관 선택">
-          <span class="text-wrapper-3">산학협력관</span>
-        </button>
-        <button class="frame-2" type="button" aria-label="4층 선택">
-          <span class="text-wrapper-3">4층</span>
-        </button>
-      </nav>
-      <button class="div-wrapper-2" aria-label="예약현황 보기">
-        <span class="text-wrapper-2">예약현황</span>
-  <link rel="stylesheet" href="globals.css" />
+        <p class="text-wrapper" id="profile-text">동의대학교<br />정보 로딩중...</p>
+      </div>
+      <div class="div-wrapper">
+        <span class="text-wrapper-2">학생회원</span>
+      </div>
+    </section>
+
+    <nav class="view-2" aria-label="위치 선택">
+      <button class="frame-2" type="button" aria-label="산학협력관 선택">
+        <span class="text-wrapper-3">산학협력관</span>
       </button>
+      <button class="frame-2" type="button" aria-label="4층 선택">
+        <span class="text-wrapper-3">4층</span>
+      </button>
+    </nav>
+
+    <button class="div-wrapper-2" aria-label="예약현황 보기">
+      <span class="text-wrapper-2">예약현황</span>
+    </button>
+
     <section class="frame-3" aria-label="강의실 구조도">
       <span class="text-wrapper-5">강의실 구조도</span>
     </section>
+
     <button class="view-4" type="button" aria-label="예약하기">
       <span class="text-wrapper-4">예약하기</span>
     </button>
   </main>
+
+  <script>
+    // 페이지 로드 시 실행
+    window.addEventListener('DOMContentLoaded', () => {
+      const userName = localStorage.getItem('user_name');
+
+      if (!userName) {
+        // 로그인 정보가 없으면 로그인 페이지로 이동
+        alert('로그인이 필요합니다.');
+        window.location.href = 'login.html';
+        return;
+      }
+
+      // 프로필 텍스트 업데이트
+      document.getElementById('profile-text').innerHTML = `동의대학교<br />응용소프트웨어공학과 ${userName}`;
+    });
+
+    // 로그아웃 함수
+    function logout() {
+      localStorage.removeItem('user_name');
+      localStorage.removeItem('user_id');
+      window.location.href = 'login.html';
+    }
+  </script>
 </body>
 
 </html>
