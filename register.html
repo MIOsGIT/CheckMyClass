@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>CheckMyClass - 회원가입</title>
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="register">
+      <header class="header">
+        <div class="frame">
+          <img class="checkmyclass-x" src="Logo_img.png" alt="CheckMyClass 로고" />
+        </div>
+        <img class="check-my-class" src="Logo_eng.png" alt="Check My Class" />
+      </header>
+      <main class="view">
+        <section class="login">
+          <p class="text-wrapper">회원가입을 위한 정보를 입력해주세요<br />비밀번호는 암호화되어 보관됩니다</p>
+          <form class="info" method="post" action="#" novalidate>
+            <label class="div" for="name">이름</label>
+            <div class="input">
+              <input
+                class="frame-2"
+                type="text"
+                id="name"
+                name="name"
+                required
+                aria-required="true"
+                autocomplete="name"
+              />
+            </div>
+            <label class="text-wrapper-2" for="student-id">학번/교번</label>
+            <div class="input">
+              <input
+                class="frame-2"
+                type="text"
+                id="student-id"
+                name="student-id"
+                required
+                aria-required="true"
+                autocomplete="off"
+              />
+            </div>
+            <label class="text-wrapper-2" for="password">비밀번호</label>
+            <div class="input">
+              <input
+                class="frame-2"
+                type="password"
+                id="password"
+                name="password"
+                required
+                aria-required="true"
+                autocomplete="new-password"
+              />
+            </div>
+            <label class="text-wrapper-2" for="phone">전화번호</label>
+            <div class="input">
+              <input
+                class="frame-2"
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                aria-required="true"
+                autocomplete="tel"
+              />
+            </div>
+            <label class="text-wrapper-2" for="department">학과</label>
+            <div class="input">
+              <input
+                class="frame-2"
+                type="text"
+                id="department"
+                name="department"
+                required
+                aria-required="true"
+                autocomplete="off"
+              />
+            </div>
+            
+          </form>
+          <div class="button">
+              <button class="button-wrapper" type="submit">
+                <span class="button-2">회원가입</span>
+              </button>
+            </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
