@@ -207,14 +207,13 @@
 .main .frame-3 {
   display: flex;
   flex-direction: column;
-  width: 354px;
-  height: 416px;
+  width: 30px;
+  height: 500px;
   align-items: center;
   justify-content: center;
   gap: 10px;
   padding: 10px;
   position: relative;
-  background-color: var(--gray);
 }
 
 .main .text-wrapper-5 {
@@ -241,6 +240,7 @@
   background-color: var(--main);
   border-radius: 20px;
 }
+
 /* Inject original CSS code here */
 
 .main .frame-2 {
@@ -302,6 +302,24 @@
 
 .main .view-4:active {
   transform: scale(0.98);
+}
+
+.map-container {
+  width: 900px;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.map-image {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .map-image {
+    max-width: none;
+
+  }
 }
 
 body {
