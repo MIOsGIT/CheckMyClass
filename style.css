@@ -4,7 +4,7 @@
   width: 402px;
   height: 874px;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   padding: 66px 0px 0px;
   position: relative;
   background-color: var(--background);
@@ -52,10 +52,8 @@
 
 .main .deu {
   position: relative;
-  width: 128px;
-  height: 26px;
-  margin-top: -5.00px;
-  margin-bottom: -5.00px;
+  width: 44px;
+  height: 44px;
 }
 
 .main .profile {
@@ -166,9 +164,7 @@
 }
 
 .main .text-wrapper-3 {
-  margin-top: -8.00px;
-  margin-bottom: -6.00px;
-  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-family: "Pretendard Variable-Medium";
   font-weight: 500;
   color: var(--black);
   position: relative;
