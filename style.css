@@ -377,6 +377,7 @@ body {
 .log-in .input {
   display: flex;
   width: 293px;
+  height: 32px;
   align-items: flex-start;
   gap: 10px;
   padding: 1px 3px;
@@ -484,7 +485,6 @@ body {
 .text-link .text-wrapper:active {
   opacity: 0.6;
 }
-
 
 .register {
   display: flex;
@@ -691,4 +691,3 @@ body {
   letter-spacing: 0;
   line-height: normal;
 }
-
