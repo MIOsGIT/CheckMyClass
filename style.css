@@ -50,6 +50,14 @@
   margin-bottom: -5.00px;
 }
 
+.main .deu {
+  position: relative;
+  width: 128px;
+  height: 26px;
+  margin-top: -5.00px;
+  margin-bottom: -5.00px;
+}
+
 .main .profile {
   display: flex;
   align-items: center;
@@ -93,15 +101,28 @@
 
 .main .div-wrapper {
   display: inline-flex;
-  height: 24px;
+  height: 20px;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 10px;
+  padding: 3px 10px;
   position: relative;
   flex: 0 0 auto;
   background-color: var(--main);
   border-radius: 20px;
+}
+
+.main .div-wrapper-2 {
+  display: inline-flex;
+  height: 12px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 150px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--main);
+  border-radius: 8px;
 }
 
 .main .text-wrapper-2 {
