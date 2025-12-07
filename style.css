@@ -318,7 +318,6 @@
 @media (max-width: 768px) {
   .map-image {
     max-width: none;
-
   }
 }
 
@@ -467,7 +466,7 @@ body {
 }
 
 .log-in .actions {
-  display: flex; 
+  display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -514,15 +513,14 @@ body {
 
 .register {
   display: flex;
-  width: 402px;
-  height: 742px;
-  align-items: center;
-  gap: 16px;
-  padding-top: 66px;
-  padding-bottom: 66px;
-  background-color: var(--background);
   flex-direction: column;
+  width: 402px;
+  height: 874px;
+  align-items: center;
+  gap: 48px;
+  padding: 66px 0px 127px;
   position: relative;
+  background-color: var(--background);
 }
 
 .register .header {
@@ -565,7 +563,16 @@ body {
   margin-bottom: -5px;
 }
 
-.register .view,
+.register .view {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
 .register .login {
   display: inline-flex;
   flex-direction: column;
@@ -577,7 +584,7 @@ body {
 
 .register .text-wrapper {
   margin-top: -1px;
-  font-family: "Pretendard Variable-Bold";
+  font-family: "Pretendard Variable-Bold", Helvetica;
   text-align: center;
   position: relative;
   width: fit-content;
@@ -601,7 +608,7 @@ body {
 
 .register .div {
   margin-top: -1px;
-  font-family: "Pretendard Variable-Bold";
+  font-family: "Inter-Bold", Helvetica;
   position: relative;
   width: fit-content;
   font-weight: 700;
@@ -612,47 +619,28 @@ body {
 }
 
 .register .input {
+  width: 293px;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  width: 293px;
   align-items: flex-start;
   gap: 10px;
   padding: 1px 3px;
   position: relative;
-  flex: 0 0 auto;
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid;
-  border-color: var(--gray);
+  border-color: var(--x-200);
 }
 
 .register .frame-2 {
-  all: unset;
-  box-sizing: border-box;
-  display: block;
-  width: 100%;
+  position: relative;
+  width: 91px;
   height: 37px;
-  font-family: "Pretendard Variable-Bold";
-  font-size: 14px;
-  color: #333333;
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-}
-
-.register .frame-2:focus {
-  outline: 2px solid var(--main);
-  outline-offset: -2px;
-}
-
-.register .frame-2::placeholder {
-  color: var(--gray);
-  opacity: 1;
 }
 
 .register .text-wrapper-2 {
-  font-family: "Pretendard Variable-Bold";
+  font-family: "Inter-Bold", Helvetica;
   position: relative;
   width: fit-content;
   font-weight: 700;
@@ -660,6 +648,52 @@ body {
   font-size: 14px;
   letter-spacing: 0;
   line-height: normal;
+}
+
+.register .frame-3 {
+  display: flex;
+  width: 294px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex: 0 0 auto;
+  margin-right: -1px;
+}
+
+.register .frame-wrapper {
+  width: 187px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 1px 3px;
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: var(--x-200);
+}
+
+.register .frame-4 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.register .check-box-outline {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.register .icon {
+  position: absolute;
+  width: 75%;
+  height: 75%;
+  top: 12.5%;
+  left: 12.5%;
 }
 
 .register .button {
@@ -691,29 +725,160 @@ body {
   border-radius: 15px;
 }
 
+.register .button-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: var(--x-0);
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+/* Original CSS should be injected here */
+
+.register .frame-2 {
+  position: relative;
+  width: 100%;
+  height: 37px;
+  border: none;
+  background: transparent;
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: #333333;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+.register .frame-2:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: -2px;
+}
+
+.register .icon {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 3px;
+  left: 3px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.register .icon::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: url("img/icon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.register .icon:checked::before {
+  opacity: 1;
+}
+
+.register .icon:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.register .check-box-outline {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--x-200);
+  border-radius: 4px;
+  background-color: var(--x-0);
+}
+
+.register .frame-4 label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.register .info {
+  display: flex;
+  flex-direction: column;
+  width: 313px;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 10px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.register .button {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  gap: 15px;
+  position: relative;
+  flex: 0 0 auto;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.register .button-wrapper {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--main);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
 .register .button-wrapper:hover {
   background-color: rgba(32, 59, 85, 0.9);
-  cursor: pointer;
 }
 
 .register .button-wrapper:active {
   background-color: rgba(32, 59, 85, 1);
 }
 
-.register .button-wrapper:focus-visible {
+.register .button-wrapper:focus {
   outline: 2px solid #4a90e2;
   outline-offset: 2px;
 }
 
 .register .button-2 {
-  display: inline-block;
   position: relative;
   width: fit-content;
   margin-top: -1px;
-  font-family: "Pretendard Variable-Bold";
+  font-family: "Inter-Bold", Helvetica;
   font-weight: 700;
-  color: var(--white);
+  color: var(--x-0);
   font-size: 14px;
   letter-spacing: 0;
   line-height: normal;
+  pointer-events: none;
 }
