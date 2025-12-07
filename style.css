@@ -630,7 +630,7 @@ body {
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid;
-  border-color: var(--x-200);
+  border-color: var(--gray);
 }
 
 .register .frame-2 {
@@ -671,7 +671,7 @@ body {
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid;
-  border-color: var(--x-200);
+  border-color: var(--gray);
 }
 
 .register .frame-4 {
@@ -804,7 +804,7 @@ body {
   position: relative;
   width: 24px;
   height: 24px;
-  border: 2px solid var(--x-200);
+  border: 2px solid var(--gray);
   border-radius: 4px;
   background-color: var(--x-0);
 }

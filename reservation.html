@@ -27,7 +27,7 @@
         margin: 15% auto; /* 상하 15%, 좌우 가운데 정렬 */
         padding: 20px;
         border: 1px solid #888;
-        width: 80%;
+        width: 336px;
         max-width: 400px;
         border-radius: 8px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -50,9 +50,23 @@
       /* 모달 내부 콘텐츠 스타일 (제공해주신 클래스 기반) */
       .reservation-modal-body .div {
         margin-bottom: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
       .reservation-modal-body .text-wrapper {
         font-weight: bold;
+      }
+
+      #confirmReservationBtn {
+        width: 100%;
+        padding: 10px;
+        background-color: var(--main);
+        color: var(--white);
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -189,7 +203,6 @@
 
         <div class="reservation-modal-body">
           <div class="frame">
-            <h2 id="modal-title" style="margin-bottom: 20px">예약 정보 확인</h2>
             <div class="div">
               <div class="text-wrapper">예약시간:</div>
               <div class="input">
