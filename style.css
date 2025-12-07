@@ -318,7 +318,6 @@
 @media (max-width: 768px) {
   .map-image {
     max-width: none;
-
   }
 }
 
@@ -467,7 +466,7 @@ body {
 }
 
 .log-in .actions {
-  display: flex; 
+  display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -716,4 +715,486 @@ body {
   font-size: 14px;
   letter-spacing: 0;
   line-height: normal;
+}
+
+.register .button-2 {
+  display: inline-block;
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Pretendard Variable-Bold";
+  font-weight: 700;
+  color: var(--white);
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+/* --- [여기서부터 새로 추가된 CSS] --- */
+
+/* 학번 입력란과 체크박스를 감싸는 가로 배치 컨테이너 */
+.register .frame-3 {
+  display: flex;
+  width: 294px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex: 0 0 auto;
+  margin-right: -1px;
+}
+
+/* 학번 입력란이 작아졌으므로 별도 래퍼 스타일 지정 */
+.register .frame-wrapper {
+  width: 187px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 1px 3px;
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: var(--gray); /* var(--x-200) 대체 */
+}
+
+/* 교직원 라벨과 체크박스 묶음 */
+.register .frame-4 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.register .frame-4 label {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* 체크박스 외곽선 */
+.register .check-box-outline {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--gray); /* var(--x-200) 대체 */
+  border-radius: 4px;
+  background-color: #ffffff; /* var(--x-0) 대체 */
+}
+
+/* 실제 체크박스 아이콘 스타일 */
+.register .icon {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 1px; /* 위치 미세 조정 */
+  left: 1px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 체크되었을 때 보여줄 V 표시 (SVG 이미지 등 사용 가능, 여기서는 간단히 CSS로 처리하거나 배경색 변경) */
+.register .icon:checked {
+  background-color: var(--main); /* 체크되면 메인 컬러로 채움 */
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.register .icon:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.reservation {
+  display: flex;
+  flex-direction: column;
+  width: 402px;
+  height: 874px;
+  align-items: center;
+  gap: 12px;
+  padding: 66px 0px 0px;
+  position: relative;
+  background-color: var(--background);
+}
+
+.reservation .header {
+  display: flex;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 0px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  background-color: var(--background);
+  box-shadow: 0px 4px 4px #00000040;
+}
+
+.reservation .frame {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: -7px;
+  margin-bottom: -7px;
+}
+
+.reservation .checkmyclass-x {
+  position: relative;
+  width: 40px;
+  height: 30px;
+  aspect-ratio: 1.33;
+}
+
+.reservation .check-my-class {
+  position: relative;
+  width: 128px;
+  height: 26px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+}
+
+.reservation .view {
+  display: flex;
+  width: 228px;
+  gap: 10px;
+  padding: 4px 10px;
+  background-color: var(--main);
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.reservation .text-wrapper {
+  margin-top: -1px;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--white);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.reservation .div {
+  display: flex;
+  gap: 12px;
+  align-self: stretch;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.reservation .div-wrapper {
+  display: inline-flex;
+  max-height: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--main);
+  border-radius: 20px;
+  border: 1px solid;
+  border-color: var(--main);
+}
+
+.reservation .text-wrapper-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -8px;
+  margin-bottom: -6px;
+  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-weight: 500;
+  color: var(--background);
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.reservation .frame-2 {
+  display: inline-flex;
+  max-height: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--background);
+  border-radius: 20px;
+  border: 1px solid;
+  border-color: var(--main);
+}
+
+.reservation .text-wrapper-3 {
+  margin-top: -8px;
+  margin-bottom: -6px;
+  font-family: "Pretendard Variable-Medium", Helvetica;
+  font-weight: 500;
+  color: var(--main);
+  position: relative;
+  width: fit-content;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.reservation .frame-3 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 4px 8px;
+  position: relative;
+  flex: 0 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: var(--main);
+}
+
+.reservation .text-wrapper-4 {
+  margin-top: -1px;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--main);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.reservation .frame-4 {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 4px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.reservation .frame-5 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 4px 8px;
+  position: relative;
+  flex: 0 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.reservation .frame-6 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.reservation .frame-7 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0px 24px;
+  position: relative;
+  /* 3w */
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.reservation .text-wrapper-5 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Pretendard-Bold", Helvetica;
+  font-weight: 700;
+  color: var(--main);
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.reservation .frame-8 {
+  display: flex;
+  width: 147px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.reservation .frame-9 {
+  display: flex;
+  flex-direction: column;
+  width: 354px;
+  height: 204px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  background-color: var(--gray);
+}
+
+.reservation .text-wrapper-6 {
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--black);
+  position: relative;
+  width: fit-content;
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.reservation .p {
+  position: relative;
+  width: fit-content;
+  font-family: var(--main-font-font-family);
+  font-weight: var(--main-font-font-weight);
+  color: var(--main);
+  font-size: var(--main-font-font-size);
+  letter-spacing: var(--main-font-letter-spacing);
+  line-height: var(--main-font-line-height);
+  white-space: nowrap;
+  font-style: var(--main-font-font-style);
+}
+
+.reservation .view-2 {
+  display: inline-flex;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: var(--main);
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.reservation .frame-10 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 119px;
+  padding: 0px 24px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.reservation .frame-11 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 4px 8px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-left: -5.5px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.reservation .frame-12 {
+  display: flex;
+  width: 147px;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-right: -5.5px;
+}
+/* Original CSS should be injected here */
+
+.reservation button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.reservation button:hover {
+  opacity: 0.9;
+}
+
+.reservation button:active {
+  opacity: 0.8;
+}
+
+.reservation .div-wrapper,
+.reservation .frame-2 {
+  max-height: none;
+  height: auto;
+
+  /* 위아래 여백(padding)을 줄여서 높이를 조절합니다 */
+  /* 앞의 숫자(4px)가 위아래, 뒤의 숫자(10px)가 양옆 여백입니다 */
+  padding: 8px 12px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.reservation .view-2:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reservation .view-2:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.reservation h1,
+.reservation h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.reservation time {
+  display: inline;
+}
+
+.reservation figure {
+  margin: 0;
+  padding: 0;
+}
+
+.reservation figcaption {
+  display: block;
 }
