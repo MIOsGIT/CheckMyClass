@@ -24,8 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // [수정된 부분] 
-    // users 테이블에는 학과 ID만 있으므로, Major 테이블과 JOIN하여 '학과 이름(major_name)'을 가져옵니다.
+    // users 테이블과 Major 테이블 조인 조회
     $sql = "SELECT u.id, u.user_id, u.user_password, u.user_name, u.role, m.major_name 
             FROM users u
             JOIN Major m ON u.major_id = m.id
@@ -47,21 +46,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (password_verify($input_pw, $hashed_password)) {
             
-            // 세션 변수에 사용자 정보 저장
+            // 세션 변수 저장
             $_SESSION['is_logged_in'] = true;
             $_SESSION['user_db_id'] = $row['id'];
             $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['user_name'] = $row['user_name'];
             $_SESSION['role'] = $row['role'];
-            
-            // [중요] DB에서 가져온 'major_name'을 'department' 세션에 저장
-            // 이렇게 하면 main.php를 수정하지 않아도 학과 이름이 잘 뜹니다.
             $_SESSION['department'] = $row['major_name']; 
 
-            echo "<script>
-                    alert('" . $row['user_name'] . "님 환영합니다!');
-                    location.href = 'main.php'; 
-                  </script>";
+            // [수정된 부분] 역할(Role)에 따른 페이지 이동 분기 처리
+            if ($row['role'] === 'STAFF') {
+                // 관리자(교직원)인 경우 manager.php로 이동
+                echo "<script>
+                        alert('관리자(교직원)로 로그인되었습니다.');
+                        location.href = 'manager.php'; 
+                      </script>";
+            } else {
+                // 학생인 경우 main.php로 이동
+                echo "<script>
+                        alert('" . $row['user_name'] . "님 환영합니다!');
+                        location.href = 'main.php'; 
+                      </script>";
+            }
+
         } else {
             echo "<script>alert('비밀번호가 일치하지 않습니다.'); history.back();</script>";
         }
@@ -73,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
 } else {
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 ?>
