@@ -6,7 +6,7 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "team02";
+$dbname = "team002";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
@@ -26,9 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // users 테이블과 Major 테이블 조인 조회
     $sql = "SELECT u.id, u.user_id, u.user_password, u.user_name, u.role, m.major_name 
-            FROM users u
-            JOIN Major m ON u.major_id = m.id
-            WHERE u.user_id = ?";
+        FROM users u
+        LEFT JOIN Major m ON u.major_id = m.id
+        WHERE u.user_id = ?";
             
     $stmt = $conn->prepare($sql);
     
@@ -54,19 +54,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['role'] = $row['role'];
             $_SESSION['department'] = $row['major_name']; 
 
-            // [수정된 부분] 역할(Role)에 따른 페이지 이동 분기 처리
             if ($row['role'] === 'STAFF') {
                 // 관리자(교직원)인 경우 manager.php로 이동
                 echo "<script>
                         alert('관리자(교직원)로 로그인되었습니다.');
-                        location.href = 'manager.php'; 
-                      </script>";
+                        location.href = 'manager.html'; 
+                        </script>";
             } else {
                 // 학생인 경우 main.php로 이동
                 echo "<script>
                         alert('" . $row['user_name'] . "님 환영합니다!');
-                        location.href = 'main.php'; 
-                      </script>";
+                        location.href = 'main.html'; 
+                        </script>";
             }
 
         } else {
@@ -80,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
 } else {
-    header("Location: login.php");
+    header("Location: login.html");
     exit();
 }
 ?>

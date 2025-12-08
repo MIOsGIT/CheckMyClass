@@ -8,7 +8,7 @@ if (!isset($_SESSION['is_logged_in']) || $_SESSION['role'] !== 'STAFF') {
 }
 
 // 2. DB 연결
-$conn = new mysqli("localhost", "root", "", "team02");
+$conn = new mysqli("localhost", "root", "", "team002");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

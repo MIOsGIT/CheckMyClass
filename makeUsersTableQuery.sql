@@ -1,6 +1,6 @@
 -- 1. 데이터베이스가 없으면 생성하고 선택
-CREATE DATABASE IF NOT EXISTS team02;
-USE team02;
+CREATE DATABASE IF NOT EXISTS team002;
+USE team002;
 
 -- 2. users 테이블이 없으면 생성
 CREATE TABLE IF NOT EXISTS users (
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 
 
-USE team02;
+USE team002;
 
 -- 1. 참조 테이블 생성 (순서 중요: FK 때문에 먼저 만들어야 함)
 
@@ -83,7 +83,7 @@ INSERT INTO Class (class_number, building_id, capacity_number, is_practical, boa
 VALUES ('410호', 1, 30, 'N', '흑판', 'default_room.png');
 
 
-USE team02;
+USE team002;
 
 -- 1. 단과대학 (College) 데이터 삽입
 -- id를 1로 고정해서 넣습니다. (나중에 Major에서 1번을 참조하기 위함)
@@ -96,7 +96,7 @@ INSERT INTO Major (major_name, college_id)
 VALUES ('응용소프트웨어공학과', 1);
 
 
-USE team02;
+USE team002;
 
 -- 1. 외래 키 제약 조건 잠시 해제 (삭제 에러 방지)
 SET FOREIGN_KEY_CHECKS = 0;

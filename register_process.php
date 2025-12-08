@@ -1,90 +1,113 @@
 <?php
+// 실제 서비스용 설정 (에러 메시지 화면 출력 방지)
+error_reporting(0);
+ini_set('display_errors', 0);
+
 // --- Database Configuration ---
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "team02";
+$dbname = "team002";
 
+// 데이터베이스 연결
 $conn = new mysqli($servername, $username, $password, $dbname);
+
+// 연결 오류 발생 시 스크립트 중단 및 알림
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    echo "<script>alert('서버 연결에 실패했습니다. 관리자에게 문의하세요.'); history.back();</script>";
+    exit();
 }
 
-// --- Form Data Processing ---
+// 한글 깨짐 방지 설정 (필수)
+mysqli_set_charset($conn, "utf8mb4");
+
+// POST 데이터 처리
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // 1. 데이터 수신
-    $user_name = mysqli_real_escape_string($conn, $_POST['name']);
-    $student_number = mysqli_real_escape_string($conn, $_POST['student-id']);
-    $raw_password = $_POST['password']; 
-    $phone_number = mysqli_real_escape_string($conn, $_POST['phone']);
-    $department_name = mysqli_real_escape_string($conn, $_POST['department']); // 사용자가 입력한 "학과 이름"
+    // 1. 데이터 가져오기 및 공백 제거
+    $user_name = isset($_POST['name']) ? trim($_POST['name']) : '';
+    $student_number = isset($_POST['student-id']) ? trim($_POST['student-id']) : '';
+    $raw_password = isset($_POST['password']) ? $_POST['password'] : '';
+    $phone_number = isset($_POST['phone']) ? trim($_POST['phone']) : '';
+    $department_name = isset($_POST['department']) ? trim($_POST['department']) : '';
 
-    // 2. 필수값 검증
+    // 2. 필수 입력값 검증
     if (empty($user_name) || empty($student_number) || empty($raw_password) || empty($phone_number) || empty($department_name)) {
-        echo "<script>alert('모든 필수 필드를 입력해주세요.'); window.history.back();</script>";
+        echo "<script>alert('모든 필수 항목을 입력해주세요.'); history.back();</script>";
         exit();
     }
-    
-    // 3. [추가된 로직] 학과 이름으로 ID 찾기
-    // 사용자가 입력한 '응용소프트웨어공학과'가 Major 테이블에 있는지 확인하고 ID를 가져옵니다.
+
+    // 3. 학과 ID 조회 (입력한 학과명으로 ID 찾기)
+    $major_id = null;
     $sql_major = "SELECT id FROM Major WHERE major_name = ?";
-    $stmt_major = $conn->prepare($sql_major);
-    $stmt_major->bind_param("s", $department_name);
-    $stmt_major->execute();
-    $result_major = $stmt_major->get_result();
+    
+    if ($stmt_major = $conn->prepare($sql_major)) {
+        $stmt_major->bind_param("s", $department_name);
+        $stmt_major->execute();
+        $result_major = $stmt_major->get_result();
 
-    if ($result_major->num_rows > 0) {
-        $row_major = $result_major->fetch_assoc();
-        $major_id = $row_major['id']; // 찾은 학과 ID (예: 1)
+        if ($result_major->num_rows > 0) {
+            $row_major = $result_major->fetch_assoc();
+            $major_id = $row_major['id'];
+        } else {
+            // DB에 없는 학과명일 경우
+            echo "<script>
+                    alert('등록되지 않은 학과입니다.\\n학과명을 정확히 입력했는지 확인해주세요. (예: 응용소프트웨어공학과)');
+                    history.back();
+                  </script>";
+            $stmt_major->close();
+            $conn->close();
+            exit();
+        }
+        $stmt_major->close();
     } else {
-        // DB에 없는 학과를 입력했을 경우
-        echo "<script>alert('존재하지 않는 학과입니다. 학과명을 정확히 입력해주세요. (예: 응용소프트웨어공학과)'); window.history.back();</script>";
+        echo "<script>alert('시스템 오류(학과 조회 실패). 관리자에게 문의하세요.'); history.back();</script>";
+        $conn->close();
         exit();
     }
-    $stmt_major->close();
 
-    // 4. 비밀번호 암호화
+    // 4. 비밀번호 암호화 및 데이터 준비
     $user_password = password_hash($raw_password, PASSWORD_DEFAULT);
-    $user_id = $student_number; 
+    $user_id = $student_number; // 학번을 아이디로 사용
 
-    // 5. 역할 설정
-    if (isset($_POST['is-staff']) && $_POST['is-staff'] == 'staff') {
-        $role = 'STAFF';
-    } else {
-        $role = 'STUDENT';
-    }
+    // 역할(Role) 설정: 체크박스가 체크되어 있으면 'STAFF', 아니면 'STUDENT'
+    $role = (isset($_POST['is-staff']) && $_POST['is-staff'] == 'staff') ? 'STAFF' : 'STUDENT';
 
-    // 6. [수정됨] INSERT 쿼리 (department -> major_id)
-    // 이제 users 테이블에는 학과 이름 대신 'major_id' 숫자가 들어갑니다.
+    // 5. 회원 정보 DB 저장 (INSERT)
     $sql = "INSERT INTO users (user_id, user_password, user_name, phone_number, student_number, role, major_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
     
-    $stmt = $conn->prepare($sql);
-    
-    // 데이터 바인딩 (s:문자열, i:정수 -> major_id는 정수이므로 마지막에 'i')
-    $stmt->bind_param("ssssssi", $user_id, $user_password, $user_name, $phone_number, $student_number, $role, $major_id);
-    
-    // 실행 및 예외처리
-    try {
-        if ($stmt->execute()) {
-            echo "<script>
-                    alert('회원가입 완료! 로그인 페이지로 이동합니다.');
-                    window.location.href = 'login.html';
-                    </script>";
+    if ($stmt = $conn->prepare($sql)) {
+        // s:문자열, i:정수 (순서: user_id, pw, name, phone, std_num, role, major_id)
+        $stmt->bind_param("ssssssi", $user_id, $user_password, $user_name, $phone_number, $student_number, $role, $major_id);
+        
+        try {
+            if ($stmt->execute()) {
+                // 성공 시 로그인 페이지로 이동
+                echo "<script>
+                        alert('회원가입이 완료되었습니다!\\n로그인 페이지로 이동합니다.');
+                        location.href = 'login.html';
+                      </script>";
+            } else {
+                throw new Exception($stmt->error);
+            }
+        } catch (Exception $e) {
+            // 중복된 학번(ID)인 경우
+            if ($conn->errno == 1062) {
+                echo "<script>alert('이미 가입된 학번(아이디)입니다.'); history.back();</script>";
+            } else {
+                echo "<script>alert('회원가입 실패: 시스템 오류가 발생했습니다.'); history.back();</script>";
+            }
         }
-    } catch (mysqli_sql_exception $e) {
-        if ($conn->errno == 1062) {
-            echo "<script>alert('오류: 이미 등록된 학번입니다.'); window.history.back();</script>";
-        } else {
-            echo "<script>alert('가입 오류: " . addslashes($e->getMessage()) . "'); window.history.back();</script>";
-        }
+        $stmt->close();
+    } else {
+        echo "<script>alert('시스템 오류(쿼리 준비 실패). 관리자에게 문의하세요.'); history.back();</script>";
     }
 
-    $stmt->close();
     $conn->close();
 
 } else {
-    echo "<script>window.location.href = 'register.html';</script>";
+    // POST 요청이 아닐 경우 회원가입 페이지로 리다이렉트
+    echo "<script>location.href = 'register.html';</script>";
     exit();
 }
 ?>
