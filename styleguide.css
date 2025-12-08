@@ -1,5 +1,5 @@
 :root {
-  --main-font-font-family: "Pretendard Variable";
+  --main-font-font-family: "Pretendard", Helvetica;
   --main-font-font-weight: 700;
   --main-font-font-size: 15px;
   --main-font-letter-spacing: 0px;
@@ -21,6 +21,7 @@
 }
 
 /*
+
 To enable a theme in your HTML, simply add one of the following data attributes to an HTML element, like so:
 
 <body data-system-colors-mode="light">
@@ -28,6 +29,7 @@ To enable a theme in your HTML, simply add one of the following data attributes 
 </body>
 
 You can apply the theme on any DOM node, not just the `body`
+
 */
 
 [data-system-colors-mode="light"] {

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>CheckMyClass - 예약 신청</title>
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* 모달 컨테이너 (오버레이) */
+      .modal {
+        display: none; /* 기본적으로 숨김 */
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4); /* 반투명 배경 */
+      }
+      /* 모달 콘텐츠 박스 */
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 상하 15%, 좌우 가운데 정렬 */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 336px;
+        max-width: 400px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        position: relative; /* 닫기 버튼 배치를 위해 필요 */
+      }
+      /* 닫기 버튼 스타일 */
+      .close-btn {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+      }
+      .close-btn:hover {
+        color: #000;
+      }
+      /* 모달 내부 콘텐츠 스타일 (제공해주신 클래스 기반) */
+      .reservation-modal-body .div {
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .reservation-modal-body .text-wrapper {
+        font-weight: bold;
+      }
+
+      #confirmReservationBtn {
+        width: 100%;
+        padding: 10px;
+        background-color: var(--main);
+        color: var(--white);
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="reservation">
+      <header class="header">
+        <div class="frame">
+          <img
+            class="checkmyclass-x"
+            src="img/logo/Logo_img.png"
+            alt="CheckMyClass 로고"
+          />
+        </div>
+        <img
+          class="check-my-class"
+          src="img/logo/Logo_eng.png"
+          alt="CheckMyClass"
+        />
+      </header>
+      <section class="view" aria-label="페이지 제목">
+        <h1 class="text-wrapper">예약 신청</h1>
+      </section>
+      <section class="div" role="group" aria-label="장비 필터"></section>
+      <section class="frame-3" aria-label="선택된 날짜">
+        <time class="text-wrapper-4" datetime="2025-12-08"
+          >2025년 12월 8일 (월)</time
+        >
+      </section>
+      <section class="frame-4" role="group" aria-label="예약 희망 시간">
+        <div class="frame-5">
+          <span class="text-wrapper-4">예약 희망 시간</span>
+        </div>
+        <div class="frame-3">
+          <time class="text-wrapper-4" datetime="17:00">17:00</time>
+        </div>
+        <div class="frame-5">
+          <span class="text-wrapper-4">~</span>
+        </div>
+        <div class="frame-3">
+          <time class="text-wrapper-4" datetime="18:00">18:00</time>
+        </div>
+      </section>
+
+      <article
+        class="frame-6"
+        aria-labelledby="room-410-title"
+        data-room-id="410"
+      >
+        <div class="frame-7">
+          <div class="frame-5">
+            <h2 class="text-wrapper-5" id="room-410-title">410호</h2>
+          </div>
+          <div class="frame-8">
+            <div class="frame-3">
+              <time class="text-wrapper-4 start-time" datetime="17:00"
+                >17:00</time
+              >
+            </div>
+            <div class="frame-5">
+              <span class="text-wrapper-4">~</span>
+            </div>
+            <div class="frame-3">
+              <time class="text-wrapper-4 end-time" datetime="18:00"
+                >18:00</time
+              >
+            </div>
+          </div>
+        </div>
+        <figure class="frame-9" aria-label="410호 강의실 이미지">
+          <figcaption class="text-wrapper-6">410호 강의실</figcaption>
+        </figure>
+        <div class="frame-7">
+          <p class="p">30명 수용가능 / PC / 전자칠판</p>
+          <button
+            class="view-2 reservation-btn"
+            type="button"
+            aria-label="410호 강의실 예약하기"
+          >
+            <span class="text-wrapper">예약하기</span>
+          </button>
+        </div>
+      </article>
+
+      <article
+        class="frame-6"
+        aria-labelledby="room-419-title"
+        data-room-id="419"
+      >
+        <div class="frame-10">
+          <div class="frame-11">
+            <h2 class="text-wrapper-5" id="room-419-title">419호</h2>
+          </div>
+          <div class="frame-12">
+            <div class="frame-3">
+              <time class="text-wrapper-4 start-time" datetime="17:00"
+                >17:00</time
+              >
+            </div>
+            <div class="frame-5">
+              <span class="text-wrapper-4">~</span>
+            </div>
+            <div class="frame-3">
+              <time class="text-wrapper-4 end-time" datetime="18:00"
+                >18:00</time
+              >
+            </div>
+          </div>
+        </div>
+        <figure class="frame-9" aria-label="419호 강의실 이미지">
+          <figcaption class="text-wrapper-6">419호 강의실</figcaption>
+        </figure>
+        <div class="frame-7">
+          <p class="p">30명 수용가능 / PC / 빔프로젝터</p>
+          <button
+            class="view-2 reservation-btn"
+            type="button"
+            aria-label="419호 강의실 예약하기"
+          >
+            <span class="text-wrapper">예약하기</span>
+          </button>
+        </div>
+      </article>
+    </main>
+
+    <div
+      id="reservationModal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div class="modal-content">
+        <span class="close-btn" aria-label="모달 닫기">&times;</span>
+
+        <div class="reservation-modal-body">
+          <div class="frame">
+            <div class="div">
+              <div class="text-wrapper">예약시간:</div>
+              <div class="input">
+                <div class="text-wrapper-2" id="modal-time-display"></div>
+              </div>
+            </div>
+            <div class="div">
+              <div class="text-wrapper">강의실:</div>
+              <div class="input">
+                <div class="text-wrapper-2" id="modal-room-display"></div>
+              </div>
+            </div>
+            <div class="div">
+              <div class="text-wrapper">대여 목적:</div>
+              <div class="div-wrapper">
+                <div class="text-wrapper-3">전공 튜터링</div>
+              </div>
+            </div>
+          </div>
+          <button id="confirmReservationBtn" class="view" type="button">
+            <div class="text-wrapper-4">예약 확정</div>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1. 필요한 DOM 요소 정의
+        const modal = document.getElementById("reservationModal");
+        const closeBtn = modal.querySelector(".close-btn");
+        const reservationBtns = document.querySelectorAll(".reservation-btn"); // 예약하기 버튼
+        const confirmBtn = document.getElementById("confirmReservationBtn"); // 예약 확정 버튼
+
+        const modalRoomDisplay = document.getElementById("modal-room-display");
+        const modalTimeDisplay = document.getElementById("modal-time-display");
+
+        // 2. 모든 '예약하기' 버튼에 클릭 이벤트 리스너 추가
+        reservationBtns.forEach((button) => {
+          button.addEventListener("click", (event) => {
+            // 클릭된 버튼의 가장 가까운 부모 강의실 섹션(article.frame-6)을 찾음
+            const article = event.target.closest(".frame-6");
+            if (!article) return;
+
+            // 강의실 이름과 시간 추출
+            const roomName =
+              article.querySelector(".text-wrapper-5").textContent;
+            const startTime = article.querySelector(".start-time").textContent;
+            const endTime = article.querySelector(".end-time").textContent;
+            const reservationTime = `${startTime}~${endTime}`;
+
+            // 3. 모달에 정보 업데이트
+            modalRoomDisplay.textContent = roomName;
+            modalTimeDisplay.textContent = reservationTime;
+
+            // 4. 모달 열기
+            modal.style.display = "block";
+          });
+        });
+
+        // 5. 모달 닫기 로직: 닫기 버튼 클릭 시
+        closeBtn.addEventListener("click", () => {
+          modal.style.display = "none";
+        });
+
+        // 6. 모달 닫기 로직: 모달 외부 클릭 시
+        window.addEventListener("click", (event) => {
+          // 클릭된 요소가 모달(전체 배경) 그 자체인지 확인
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+
+        // 7. 예약 확정 버튼 로직
+        confirmBtn.addEventListener("click", () => {
+          // 실제 예약 로직 (예: Fetch API로 서버에 데이터 전송)을 여기에 구현
+          const room = modalRoomDisplay.textContent;
+          const time = modalTimeDisplay.textContent;
+          alert(
+            `[예약 확정] ${room}을(를) ${time}에 예약 요청합니다! (실제 로직 필요)`
+          );
+
+          // 모달 닫기
+          modal.style.display = "none";
+        });
+      });
+    </script>
+  </body>
+</html>
