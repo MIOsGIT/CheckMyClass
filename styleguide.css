@@ -1,5 +1,5 @@
 :root {
-  --main-font-font-family: "Pretendard", Helvetica;
+  --main-font-font-family: "Pretendard Variable Midium";
   --main-font-font-weight: 700;
   --main-font-font-size: 15px;
   --main-font-letter-spacing: 0px;
@@ -19,18 +19,6 @@
   --green: rgba(0, 180, 0, 1);
   --light-gray: rgba(245, 245, 245, 1);
 }
-
-/*
-
-To enable a theme in your HTML, simply add one of the following data attributes to an HTML element, like so:
-
-<body data-system-colors-mode="light">
-    <!-- the rest of your content -->
-</body>
-
-You can apply the theme on any DOM node, not just the `body`
-
-*/
 
 [data-system-colors-mode="light"] {
   --system-colors-labels-primary: rgba(0, 0, 0, 1);

@@ -1,8 +1,6 @@
 <?php
-// 세션 시작
 session_start();
 
-// --- Database Configuration ---
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -13,7 +11,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// --- Login Process ---
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $input_id = mysqli_real_escape_string($conn, $_POST['student_id']);
@@ -54,17 +51,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['role'] = $row['role'];
             $_SESSION['department'] = $row['major_name']; 
 
-            if ($row['role'] === 'STAFF') {
-                // 관리자(교직원)인 경우 manager.php로 이동
+            if ($row['role'] === 'ADMIN') {
                 echo "<script>
-                        alert('관리자(교직원)로 로그인되었습니다.');
-                        location.href = 'manager.html'; 
+                        alert('관리자로 로그인되었습니다.');
+                        location.href = 'manager.php'; 
                         </script>";
             } else {
-                // 학생인 경우 main.php로 이동
                 echo "<script>
                         alert('" . $row['user_name'] . "님 환영합니다!');
-                        location.href = 'main.html'; 
+                        location.href = 'main.php'; 
                         </script>";
             }
 

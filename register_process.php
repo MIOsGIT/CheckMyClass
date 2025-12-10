@@ -1,9 +1,7 @@
 <?php
-// 실제 서비스용 설정 (에러 메시지 화면 출력 방지)
 error_reporting(0);
 ini_set('display_errors', 0);
 
-// --- Database Configuration ---
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -17,8 +15,6 @@ if ($conn->connect_error) {
     echo "<script>alert('서버 연결에 실패했습니다. 관리자에게 문의하세요.'); history.back();</script>";
     exit();
 }
-
-// 한글 깨짐 방지 설정 (필수)
 mysqli_set_charset($conn, "utf8mb4");
 
 // POST 데이터 처리
@@ -54,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<script>
                     alert('등록되지 않은 학과입니다.\\n학과명을 정확히 입력했는지 확인해주세요. (예: 응용소프트웨어공학과)');
                     history.back();
-                  </script>";
+                    </script>";
             $stmt_major->close();
             $conn->close();
             exit();
@@ -70,8 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_password = password_hash($raw_password, PASSWORD_DEFAULT);
     $user_id = $student_number; // 학번을 아이디로 사용
 
-    // 역할(Role) 설정: 체크박스가 체크되어 있으면 'STAFF', 아니면 'STUDENT'
-    $role = (isset($_POST['is-staff']) && $_POST['is-staff'] == 'staff') ? 'STAFF' : 'STUDENT';
+    $role = (isset($_POST['is-PROFESSOR']) && $_POST['is-PROFESSOR'] == 'PROFESSOR') ? 'PROFESSOR' : 'STUDENT';
 
     // 5. 회원 정보 DB 저장 (INSERT)
     $sql = "INSERT INTO users (user_id, user_password, user_name, phone_number, student_number, role, major_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -86,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<script>
                         alert('회원가입이 완료되었습니다!\\n로그인 페이지로 이동합니다.');
                         location.href = 'login.html';
-                      </script>";
+                        </script>";
             } else {
                 throw new Exception($stmt->error);
             }
@@ -95,8 +90,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($conn->errno == 1062) {
                 echo "<script>alert('이미 가입된 학번(아이디)입니다.'); history.back();</script>";
             } else {
-                echo "<script>alert('회원가입 실패: 시스템 오류가 발생했습니다.'); history.back();</script>";
-            }
+                    $error_msg = addslashes($e->getMessage());
+                    echo "<script>alert('오류 상세: $error_msg'); history.back();</script>";
+                }
         }
         $stmt->close();
     } else {

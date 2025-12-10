@@ -7,8 +7,8 @@ if (!isset($_SESSION['is_logged_in'])) {
     exit();
 }
 
-// 2. DB 연결
-$conn = new mysqli("localhost", "root", "", "team02");
+// 2. DB 연결 (DB명 team002로 수정)
+$conn = new mysqli("localhost", "root", "", "team002");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -19,20 +19,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // 데이터 수신
     $class_id = $_POST['class_id'];
     $date = $_POST['date'];
-    $start_time_raw = $_POST['start_time'];
-    $end_time_raw = $_POST['end_time'];
-    
-    // [추가] 사용 목적 받기
-    $purpose = mysqli_real_escape_string($conn, $_POST['purpose']); 
+    $start_time = $_POST['start_time'];
+    $end_time = $_POST['end_time'];
+    $purpose = trim($_POST['purpose']);
 
-    $user_id = $_SESSION['user_id']; 
-
-    // DATETIME 형식 변환
-    $rental_start_time = $date . ' ' . $start_time_raw . ':00';
-    $rental_end_time = $date . ' ' . $end_time_raw . ':00';
+    $user_id = $_SESSION['user_db_id']; 
 
     // 시간 유효성 검사
-    if (strtotime($rental_start_time) >= strtotime($rental_end_time)) {
+    if ($start_time >= $end_time) {
         echo "<script>alert('종료 시간은 시작 시간보다 늦어야 합니다.'); history.back();</script>";
         exit();
     }
@@ -43,28 +37,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // 중복 예약 체크
-    $check_sql = "SELECT * FROM MySchedule 
-                  WHERE class_id = ? 
-                  AND rental_start_time < ? 
-                  AND rental_end_time > ?
-                  AND status != '반려'"; 
+    // 4. 중복 예약 체크 (Reservation 테이블 기준)
+    $check_sql = "SELECT id FROM Reservation 
+                    WHERE class_id = ? 
+                    AND reservation_date = ? 
+                    AND status != 'REJECTED'
+                    AND (
+                        (start_time < ? AND end_time > ?) OR
+                        (start_time >= ? AND start_time < ?)
+                    )";
     
+    // 시간 비교 로직:
+    // 1. 기존 예약이 내 시작시간보다 늦게 끝나고, 내 종료시간보다 빨리 시작함 (겹침)
+    
+    // 간단한 중복 체크 쿼리 (새로 예약하려는 시간대와 겹치는게 있는지 확인)
+    $check_sql = "SELECT id FROM Reservation 
+                    WHERE class_id = ? 
+                    AND reservation_date = ? 
+                    AND status != 'REJECTED'
+                    AND NOT (end_time <= ? OR start_time >= ?)";
+
     $stmt_check = $conn->prepare($check_sql);
-    $stmt_check->bind_param("iss", $class_id, $rental_end_time, $rental_start_time);
+    $stmt_check->bind_param("isss", $class_id, $date, $start_time, $end_time);
     $stmt_check->execute();
     $result_check = $stmt_check->get_result();
 
     if ($result_check->num_rows > 0) {
-        echo "<script>alert('해당 시간에는 이미 예약이 존재합니다.'); history.back();</script>";
+        echo "<script>alert('해당 시간에는 이미 다른 예약이 존재합니다.'); history.back();</script>";
     } else {
-        // [수정] 예약 정보 저장 (purpose 추가)
-        $status = '승인대기';
-        $insert_sql = "INSERT INTO MySchedule (user_id, class_id, rental_start_time, rental_end_time, purpose, status) VALUES (?, ?, ?, ?, ?, ?)";
+        // 5. 예약 정보 저장 (Reservation 테이블 사용)
+        $sql = "INSERT INTO Reservation (user_id, class_id, reservation_date, start_time, end_time, purpose, status, create_time) 
+                VALUES (?, ?, ?, ?, ?, ?, 'WAITING', NOW())";
         
-        $stmt_insert = $conn->prepare($insert_sql);
-        // 바인딩 타입: s가 6개 (user_id, rental_start, rental_end, purpose, status) + i 1개 (class_id) -> 순서 맞춰서 sissss
-        $stmt_insert->bind_param("sissss", $user_id, $class_id, $rental_start_time, $rental_end_time, $purpose, $status);
+        $stmt_insert = $conn->prepare($sql);
+        // user_id(int), class_id(int), date(string), start(string), end(string), purpose(string) -> iissss
+        $stmt_insert->bind_param("iissss", $user_id, $class_id, $date, $start_time, $end_time, $purpose);
 
         if ($stmt_insert->execute()) {
             echo "<script>
@@ -80,7 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
 } else {
-    header("Location: reservation.php");
+    // POST가 아니면 예약 페이지로 돌려보냄
+    echo "<script>location.href = 'reservation.php';</script>";
     exit();
 }
 ?>

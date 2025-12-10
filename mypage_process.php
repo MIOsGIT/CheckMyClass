@@ -88,14 +88,14 @@ $result = $stmt->get_result();
                 $time_str = $start_dt->format('H:i') . "~" . $end_dt->format('H:i');
                 
                 // 상태별 클래스 및 텍스트 설정
-                $status_class = 'status-waiting'; // 기본: 대기 (파랑)
+                $status_class = 'status-waiting';
                 $status_text = '대기';
 
                 if ($row['status'] == '반려') {
-                    $status_class = 'status-rejected'; // 빨강
+                    $status_class = 'status-rejected';
                     $status_text = '반려';
-                } elseif ($row['status'] == '승인') { // DB값이 '승인'일 경우
-                    $status_class = 'status-approved'; // 초록
+                } elseif ($row['status'] == '승인') {
+                    $status_class = 'status-approved';
                     $status_text = '승인됨';
                 }
             ?>
